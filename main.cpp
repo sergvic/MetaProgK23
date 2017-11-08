@@ -30,19 +30,26 @@ template<int K, typename T> T intExp(T x)
 	return res;
 }
 
-template <int K> class IntExp {
+template <int X, int K> class IntExp {
 public:
-	static const int R = IntExp<K - 1>::R;
+	static const int R = IntExp<X, K - 1>::R*X;
 };
 
-template <> class IntExp<0> {
+template <int X> class IntExp<X, 0> {
 public:
 	static const int R = 1;
 };
 
 void main()
 {
-	int r = IntExp<3>::R;
+	int r = IntExp<2, 10>::R;
+	int data[IntExp<2, 10>::R];
+	data[1023] = IntExp<2, 10>::R;
+
+	cout << "d = " << data[1023] << endl;
+
+	return;
+
 	getMax<string>("AA", "BB");
 
 	int a = getMax<double>(3.4, 2);
